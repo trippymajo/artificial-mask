@@ -5,9 +5,11 @@ public class AppearanceCycler : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer target;
 
-    [Header("Options (Colors)")]
-    // Just for now withouth sprites
-    [SerializeField] private Color[] options;
+    [Header("Options (Items)")]
+    [SerializeField] private ClothingItemDef[] options;
+
+    [Header("Behavior")]
+    [SerializeField] private bool hideWhenNone = true;
 
     private int index;
 
@@ -52,7 +54,18 @@ public class AppearanceCycler : MonoBehaviour
         // In future need to check sprite existence
         if (options == null || options.Length == 0) return;
 
-        var c = options[index];
-        target.color = c;
+        var item = options[index];
+
+        // pick needed sprite
+        target.sprite = item != null ? item.sprite : null;
+
+        // Make it visible
+        target.color = Color.white;
+
+        // Handle null object
+        if (hideWhenNone)
+            target.enabled = (item != null && item.sprite != null);
+        else
+            target.enabled = true;
     }
 }

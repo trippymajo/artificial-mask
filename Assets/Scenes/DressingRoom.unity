@@ -146,7 +146,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 6, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1557695569}
@@ -200,8 +200,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -2577052712302466309, guid: 57307f5571bad134da80572df6a48f30, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -305,8 +305,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 623476588}
-  - {fileID: 2108134557}
   - {fileID: 718323036}
+  - {fileID: 2108134557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -421,11 +421,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1433001279008787403, guid: 417b92ea00398e540957613eb7f0db0a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -0.000061035
       objectReference: {fileID: 0}
     - target: {fileID: 1433001279008787403, guid: 417b92ea00398e540957613eb7f0db0a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 12.774992
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 1433001279008787403, guid: 417b92ea00398e540957613eb7f0db0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -671,8 +671,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -100
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.99173784, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 36b58c1b8923d2c4f82df3f479e19e2d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -691,7 +691,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 10, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -787,7 +787,7 @@ GameObject:
   - component: {fileID: 1466286005}
   - component: {fileID: 1466286006}
   m_Layer: 0
-  m_Name: Mask
+  m_Name: Boots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -802,8 +802,8 @@ Transform:
   m_GameObject: {fileID: 1466286003}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 3, y: 1, z: 1}
+  m_LocalPosition: {x: 0.02, y: -2.723, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1557695569}
@@ -857,8 +857,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 30
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 685679690, guid: df20e705aa8ddec40b26b2cd24192775, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -881,13 +881,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AppearanceCycler
   target: {fileID: 1466286005}
   options:
-  - {r: 1, g: 0, b: 0.14044952, a: 1}
-  - {r: 1, g: 0.41117916, b: 0, a: 1}
-  - {r: 1, g: 0.9862055, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0.09069872, a: 1}
-  - {r: 0, g: 1, b: 1, a: 1}
-  - {r: 0.07693577, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0.87243366, a: 1}
+  - {fileID: 0}
+  - {fileID: 685679690, guid: df20e705aa8ddec40b26b2cd24192775, type: 3}
+  - {fileID: -4345632612695580497, guid: 759d20d44febf514b816dc18c4df35e0, type: 3}
+  hideWhenNone: 1
 --- !u!1 &1557695568
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,8 +916,8 @@ Transform:
   m_Children:
   - {fileID: 234074695}
   - {fileID: 1777708354}
-  - {fileID: 1466286004}
   - {fileID: 1764758740}
+  - {fileID: 1466286004}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1764758739
@@ -950,8 +947,8 @@ Transform:
   m_GameObject: {fileID: 1764758739}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 3, y: 4, z: 1}
+  m_LocalPosition: {x: 0.02, y: -2.17, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1557695569}
@@ -1005,8 +1002,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 40
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.46368837, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 1199516014, guid: df20e705aa8ddec40b26b2cd24192775, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1029,13 +1026,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AppearanceCycler
   target: {fileID: 1764758741}
   options:
-  - {r: 1, g: 0, b: 0.14044952, a: 1}
-  - {r: 1, g: 0.41117916, b: 0, a: 1}
-  - {r: 1, g: 0.9862055, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0.09069872, a: 1}
-  - {r: 0, g: 1, b: 1, a: 1}
-  - {r: 0.07693577, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0.87243366, a: 1}
+  - {fileID: 0}
+  - {fileID: 1103278686134791872, guid: 759d20d44febf514b816dc18c4df35e0, type: 3}
+  - {fileID: 1199516014, guid: df20e705aa8ddec40b26b2cd24192775, type: 3}
+  hideWhenNone: 1
 --- !u!1 &1777708353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,8 +1057,8 @@ Transform:
   m_GameObject: {fileID: 1777708353}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.02, y: 0.57, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1557695569}
@@ -1118,12 +1112,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 50
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.04096222, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: -1360573324243888677, guid: df20e705aa8ddec40b26b2cd24192775, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.95, y: 1.53}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1142,13 +1136,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AppearanceCycler
   target: {fileID: 1777708355}
   options:
-  - {r: 1, g: 0, b: 0.14044952, a: 1}
-  - {r: 1, g: 0.41117916, b: 0, a: 1}
-  - {r: 1, g: 0.9862055, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0.09069872, a: 1}
-  - {r: 0, g: 1, b: 1, a: 1}
-  - {r: 0.07693577, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0.87243366, a: 1}
+  - {fileID: 0}
+  - {fileID: -1360573324243888677, guid: df20e705aa8ddec40b26b2cd24192775, type: 3}
+  - {fileID: 5719414975282995793, guid: 759d20d44febf514b816dc18c4df35e0, type: 3}
+  hideWhenNone: 1
 --- !u!1001 &2108134556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1251,11 +1242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1433001279008787403, guid: 417b92ea00398e540957613eb7f0db0a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -0.000061035
       objectReference: {fileID: 0}
     - target: {fileID: 1433001279008787403, guid: 417b92ea00398e540957613eb7f0db0a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 312
+      value: -177
       objectReference: {fileID: 0}
     - target: {fileID: 1433001279008787403, guid: 417b92ea00398e540957613eb7f0db0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1303,7 +1294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4499319301472907741, guid: 417b92ea00398e540957613eb7f0db0a, type: 3}
       propertyPath: m_Name
-      value: CyclerPanelMask
+      value: CyclerPanelBoots
       objectReference: {fileID: 0}
     - target: {fileID: 6679882688547844271, guid: 417b92ea00398e540957613eb7f0db0a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1449,7 +1440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1433001279008787403, guid: 417b92ea00398e540957613eb7f0db0a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 462
+      value: 268
       objectReference: {fileID: 0}
     - target: {fileID: 1433001279008787403, guid: 417b92ea00398e540957613eb7f0db0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
