@@ -13,6 +13,7 @@ namespace LLMUnity
     {
         private ReorderableList modelList;
         static float nameColumnWidth = 150f;
+        static float templateColumnWidth = 150f;
         static float textColumnWidth = 150f;
         static float includeInBuildColumnWidth = 30f;
         static float actionColumnWidth = 20f;
@@ -31,7 +32,7 @@ namespace LLMUnity
 
         public void AddSecuritySettings(SerializedObject llmScriptSO, LLM llmScript)
         {
-            void AddSSLLoad(string type, Action<string> setterCallback)
+            void AddSSLLoad(string type, Callback<string> setterCallback)
             {
                 if (GUILayout.Button("Load SSL " + type, GUILayout.Width(buttonWidth)))
                 {
@@ -43,17 +44,29 @@ namespace LLMUnity
                 }
             }
 
+            void AddSSLInfo(string propertyName, string type, Callback<string> setterCallback)
+            {
+                string path = llmScriptSO.FindProperty(propertyName).stringValue;
+                if (path != "")
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.LabelField("SSL " + type + " path", path);
+                    if (GUILayout.Button(trashIcon, GUILayout.Height(actionColumnWidth), GUILayout.Width(actionColumnWidth))) setterCallback("");
+                    EditorGUILayout.EndHorizontal();
+                }
+            }
+
             EditorGUILayout.LabelField("Server Security Settings", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(llmScriptSO.FindProperty("_APIKey"));
+            EditorGUILayout.PropertyField(llmScriptSO.FindProperty("APIKey"));
 
             if (llmScriptSO.FindProperty("advancedOptions").boolValue)
             {
                 EditorGUILayout.BeginHorizontal();
-                AddSSLLoad("certificate", llmScript.SetSSLCertFromFile);
-                AddSSLLoad("key", llmScript.SetSSLKeyFromFile);
+                AddSSLLoad("certificate", llmScript.SetSSLCert);
+                AddSSLLoad("key", llmScript.SetSSLKey);
                 EditorGUILayout.EndHorizontal();
-                EditorGUILayout.PropertyField(llmScriptSO.FindProperty("_SSLCert"));
-                EditorGUILayout.PropertyField(llmScriptSO.FindProperty("_SSLKey"));
+                AddSSLInfo("SSLCertPath", "certificate", llmScript.SetSSLCert);
+                AddSSLInfo("SSLKeyPath", "key", llmScript.SetSSLKey);
             }
             Space();
         }
@@ -98,7 +111,7 @@ namespace LLMUnity
             if (llmScriptSO.FindProperty("advancedOptions").boolValue)
             {
                 attributeClasses.Add(typeof(ModelAdvancedAttribute));
-                attributeClasses.Add(typeof(ModelExtrasAttribute));
+                if (LLMUnitySetup.FullLlamaLib) attributeClasses.Add(typeof(ModelExtrasAttribute));
             }
             ShowPropertiesOfClass("", llmScriptSO, attributeClasses, false);
             Space();
@@ -113,10 +126,10 @@ namespace LLMUnity
         {
             List<string> existingOptions = new List<string>();
             foreach (ModelEntry entry in LLMManager.modelEntries) existingOptions.Add(entry.url);
-            modelOptions = new List<string>() { "Download model", "Custom URL" };
-            modelNames = new List<string>() { null, null };
-            modelURLs = new List<string>() { null, null };
-            modelLicenses = new List<string>() { null, null };
+            modelOptions = new List<string>(){"Download model", "Custom URL"};
+            modelNames = new List<string>(){null, null};
+            modelURLs = new List<string>(){null, null};
+            modelLicenses = new List<string>(){null, null};
             foreach (var entry in LLMUnitySetup.modelOptions)
             {
                 string category = entry.Key;
@@ -133,9 +146,9 @@ namespace LLMUnity
 
         float[] GetColumnWidths(bool expandedView)
         {
-            List<float> widths = new List<float>() { actionColumnWidth, nameColumnWidth };
-            if (expandedView) widths.AddRange(new List<float>() { textColumnWidth, textColumnWidth });
-            widths.AddRange(new List<float>() { includeInBuildColumnWidth, actionColumnWidth });
+            List<float> widths = new List<float>(){actionColumnWidth, nameColumnWidth, templateColumnWidth};
+            if (expandedView) widths.AddRange(new List<float>(){textColumnWidth, textColumnWidth});
+            widths.AddRange(new List<float>(){includeInBuildColumnWidth, actionColumnWidth});
             return widths.ToArray();
         }
 
@@ -168,10 +181,11 @@ namespace LLMUnity
             Repaint();
         }
 
-        void SelectModel(string filename, bool lora, bool ifNoneSelected = true)
+        void SetModelIfNone(string filename, bool lora)
         {
             LLM llmScript = (LLM)target;
-            if (!lora) llmScript.SetModel(filename);
+            int num = LLMManager.Num(lora);
+            if (!lora && llmScript.model == "" && num == 1) llmScript.SetModel(filename);
             if (lora) llmScript.AddLora(filename);
         }
 
@@ -215,7 +229,7 @@ namespace LLMUnity
                 if (submit && customURL != "")
                 {
                     string filename = await LLMManager.Download(customURL, customURLLora, true);
-                    SelectModel(filename, customURLLora);
+                    SetModelIfNone(filename, customURLLora);
                     UpdateModels(true);
                 }
             }
@@ -237,7 +251,7 @@ namespace LLMUnity
             {
                 if (modelLicenses[modelIndex] != null) LLMUnitySetup.LogWarning($"The {modelNames[modelIndex]} model is released under the following license: {modelLicenses[modelIndex]}. By using this model, you agree to the terms of the license.");
                 string filename = await LLMManager.DownloadModel(modelURLs[modelIndex], true, modelNames[modelIndex]);
-                SelectModel(filename, false);
+                SetModelIfNone(filename, false);
                 UpdateModels(true);
             }
 
@@ -249,7 +263,7 @@ namespace LLMUnity
                     if (!string.IsNullOrEmpty(path))
                     {
                         string filename = LLMManager.LoadModel(path, true);
-                        SelectModel(filename, false);
+                        SetModelIfNone(filename, false);
                         UpdateModels();
                     }
                 };
@@ -271,7 +285,7 @@ namespace LLMUnity
                         if (!string.IsNullOrEmpty(path))
                         {
                             string filename = LLMManager.LoadLora(path, true);
-                            SelectModel(filename, true);
+                            SetModelIfNone(filename, true);
                             UpdateModels();
                         }
                     };
@@ -306,6 +320,7 @@ namespace LLMUnity
                     int col = 0;
                     Rect selectRect = rects[col++];
                     Rect nameRect = rects[col++];
+                    Rect templateRect = rects[col++];
                     Rect urlRect = new Rect();
                     Rect pathRect = new Rect();
                     if (expandedView)
@@ -335,6 +350,19 @@ namespace LLMUnity
                     }
 
                     DrawCopyableLabel(nameRect, entry.label, entry.filename);
+
+                    if (!entry.lora)
+                    {
+                        string[] templateDescriptions = ChatTemplate.templatesDescription.Keys.ToList().ToArray();
+                        string[] templates = ChatTemplate.templatesDescription.Values.ToList().ToArray();
+                        int templateIndex = Array.IndexOf(templates, entry.chatTemplate);
+                        int newTemplateIndex = EditorGUI.Popup(templateRect, templateIndex, templateDescriptions);
+                        if (newTemplateIndex != templateIndex)
+                        {
+                            LLMManager.SetTemplate(entry.filename, templates[newTemplateIndex]);
+                            UpdateModels();
+                        }
+                    }
 
                     if (expandedView)
                     {
@@ -383,6 +411,7 @@ namespace LLMUnity
                     int col = 0;
                     EditorGUI.LabelField(rects[col++], "");
                     EditorGUI.LabelField(rects[col++], "Model");
+                    EditorGUI.LabelField(rects[col++], "Chat template");
                     if (expandedView)
                     {
                         EditorGUI.LabelField(rects[col++], "URL");
@@ -411,22 +440,25 @@ namespace LLMUnity
 
         private void CopyToClipboard(string text)
         {
-            TextEditor te = new TextEditor { text = text };
+            TextEditor te = new TextEditor {text = text};
             te.SelectAll();
             te.Copy();
         }
 
-        public override void AddOptionsExtras()
+        public void AddExtrasToggle()
         {
-            AddDebugModeToggle();
+            if (ToggleButton("Use extras", LLMUnitySetup.FullLlamaLib)) LLMUnitySetup.SetFullLlamaLib(!LLMUnitySetup.FullLlamaLib);
         }
 
-        public override void AddSetupExtras()
+        public override void AddOptionsToggles(SerializedObject llmScriptSO)
         {
-            bool useCUBLAS = LLMUnitySetup.CUBLAS;
-            GUIContent content = new GUIContent("Light build for Nvidia GPUs", "Use tinyBLAS instead of cuBLAS that takes up less space and has similar performance for quants - doesn't work with i-quants and flash attention");
-            bool newUseCUBLAS = !EditorGUILayout.Toggle(content, !useCUBLAS);
-            if (newUseCUBLAS != useCUBLAS) LLMUnitySetup.SetCUBLAS(newUseCUBLAS);
+            AddDebugModeToggle();
+
+            EditorGUILayout.BeginHorizontal();
+            AddAdvancedOptionsToggle(llmScriptSO);
+            AddExtrasToggle();
+            EditorGUILayout.EndHorizontal();
+            Space();
         }
 
         public override void OnInspectorGUI()
@@ -449,7 +481,7 @@ namespace LLMUnity
 
             AddOptionsToggles(llmScriptSO);
             AddSetupSettings(llmScriptSO);
-            if (llmScriptSO.FindProperty("_remote").boolValue) AddSecuritySettings(llmScriptSO, llmScript);
+            if (llmScriptSO.FindProperty("remote").boolValue) AddSecuritySettings(llmScriptSO, llmScript);
             AddModelLoadersSettings(llmScriptSO, llmScript);
             AddChatSettings(llmScriptSO);
 
