@@ -1,6 +1,5 @@
 /// @file
 /// @brief File implementing the LLM embedder.
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace LLMUnity
@@ -10,11 +9,11 @@ namespace LLMUnity
     /// <summary>
     /// Class implementing the LLM embedder.
     /// </summary>
-    public class LLMEmbedder : LLMClient
+    public class LLMEmbedder : LLMCaller
     {
-        protected override async Task SetLLM(LLM llmSet)
+        protected override void SetLLM(LLM llmSet)
         {
-            await base.SetLLM(llmSet);
+            base.SetLLM(llmSet);
             if (llmSet != null && !llmSet.embeddingsOnly)
             {
                 LLMUnitySetup.LogWarning($"The LLM {llmSet.name} set for LLMEmbeddings {gameObject.name} is not an embeddings-only model, accuracy may be sub-optimal");

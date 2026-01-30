@@ -9,7 +9,6 @@ namespace LLMUnity
     public class PropertyEditor : Editor
     {
         public static int buttonWidth = 150;
-        private Texture2D logoImage;
 
         public virtual void AddScript(SerializedObject llmScriptSO)
         {
@@ -24,21 +23,17 @@ namespace LLMUnity
             return GUILayout.Button(text, style, GUILayout.Width(buttonWidth));
         }
 
-        public virtual void AddSetupExtras() {}
-
         public virtual void AddSetupSettings(SerializedObject llmScriptSO)
         {
             List<Type> attributeClasses = new List<Type>(){typeof(LocalRemoteAttribute)};
-            SerializedProperty remoteProperty = llmScriptSO.FindProperty("_remote");
+            SerializedProperty remoteProperty = llmScriptSO.FindProperty("remote");
             if (remoteProperty != null) attributeClasses.Add(remoteProperty.boolValue ? typeof(RemoteAttribute) : typeof(LocalAttribute));
             attributeClasses.Add(typeof(LLMAttribute));
             if (llmScriptSO.FindProperty("advancedOptions").boolValue)
             {
                 attributeClasses.Add(typeof(LLMAdvancedAttribute));
             }
-            ShowPropertiesOfClass("Setup Settings", llmScriptSO, attributeClasses, false);
-            AddSetupExtras();
-            Space();
+            ShowPropertiesOfClass("Setup Settings", llmScriptSO, attributeClasses, true);
         }
 
         public virtual void AddModelSettings(SerializedObject llmScriptSO)
@@ -76,31 +71,8 @@ namespace LLMUnity
             if (ToggleButton(toggleText, advancedOptionsProp.boolValue)) advancedOptionsProp.boolValue = !advancedOptionsProp.boolValue;
         }
 
-        public virtual void AddLogo()
-        {
-            if (logoImage != null)
-            {
-                float height = Mathf.Round(EditorGUIUtility.singleLineHeight * 1.3f);
-                float width = height * logoImage.width / logoImage.height;
-
-                Rect rect = GUILayoutUtility.GetRect(width, height, GUILayout.Width(width), GUILayout.Height(height));
-                bool isHovering = rect.Contains(Event.current.mousePosition);
-
-                Color originalColor = GUI.color;
-                if (isHovering) GUI.color = new Color(0.7f, 0.7f, 0.7f, 1f);
-                if (GUI.Button(rect, logoImage, GUIStyle.none))
-                {
-                    Application.OpenURL("https://undream.ai");
-                }
-                GUI.color = originalColor;
-            }
-        }
-
-        public virtual void AddOptionsExtras() {}
-
         public virtual void AddOptionsToggles(SerializedObject llmScriptSO)
         {
-            AddLogo();
             AddAdvancedOptionsToggle(llmScriptSO);
             Space();
         }
@@ -238,12 +210,8 @@ namespace LLMUnity
             return null;
         }
 
-        public void OnInspectorGUIStart(SerializedObject scriptSO)
+        public virtual void OnInspectorGUIStart(SerializedObject scriptSO)
         {
-            if (logoImage == null)
-            {
-                logoImage = Resources.Load<Texture2D>("undreamai_logo");
-            }
             scriptSO.Update();
             GUI.enabled = false;
             AddScript(scriptSO);
@@ -251,7 +219,7 @@ namespace LLMUnity
             EditorGUI.BeginChangeCheck();
         }
 
-        public void OnInspectorGUIEnd(SerializedObject scriptSO)
+        public virtual void OnInspectorGUIEnd(SerializedObject scriptSO)
         {
             if (EditorGUI.EndChangeCheck())
                 Repaint();

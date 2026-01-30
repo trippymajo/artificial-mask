@@ -87,7 +87,7 @@ namespace LLMUnity
             int offs = 0;
 
             if (BitConverter.ToUInt32(ReadBytes(offs, 4), 0) != GGUF_MAGIC)
-                LLMUnitySetup.LogError("GGUF magic invalid", true);
+                throw new ArgumentException("GGUF magic invalid");
             offs += 4;
 
             uint temp_version = BitConverter.ToUInt32(ReadBytes(offs, 4));
@@ -100,7 +100,7 @@ namespace LLMUnity
             uint version = temp_version;
 
             if (!READER_SUPPORTED_VERSIONS.Contains((int)version))
-                LLMUnitySetup.LogError($"Sorry, file appears to be version {version} which we cannot handle", true);
+                throw new ArgumentException($"Sorry, file appears to be version {version} which we cannot handle");
 
             offs += PushField(new ReaderField { offset = offs, name = "GGUF.version", parts = new List<Array> { new uint[] { temp_version } }, data = new List<int> { 0 }, types = new List<GGUFValueType> { GGUFValueType.UINT32 } });
             ulong[] temp_counts = new ulong[2];
@@ -172,7 +172,7 @@ namespace LLMUnity
         private int PushField(ReaderField field, bool skip_sum = false)
         {
             if (fields.ContainsKey(field.name))
-                LLMUnitySetup.LogError($"Duplicate {field.name} already in list at offset {field.offset}", true);
+                throw new ArgumentException($"Duplicate {field.name} already in list at offset {field.offset}");
             fields[field.name] = field;
             if (skip_sum)
                 return 0;
@@ -240,8 +240,7 @@ namespace LLMUnity
                 return (offs - orig_offs, aparts, data_idxs, types);
             }
             // We can't deal with this one.
-            LLMUnitySetup.LogError($"Unknown/unhandled field type {(GGUFValueType)raw_type}", true);
-            return (-1, null, null, null);
+            throw new ArgumentException($"Unknown/unhandled field type {(GGUFValueType)raw_type}");
         }
 
         private int BuildFields(int offs, int count)
