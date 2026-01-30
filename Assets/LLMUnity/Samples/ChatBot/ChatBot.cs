@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LLMUnity;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace LLMUnitySamples
@@ -27,8 +30,11 @@ namespace LLMUnitySamples
         private BubbleUI playerUI, aiUI;
         private bool warmUpDone = false;
         private int lastBubbleOutsideFOV = -1;
+        private Task chatTask;
+        
+        public CharacterStarter characterStarter;
 
-        void Start()
+        public void Initialize()
         {
             if (font == null) font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             playerUI = new BubbleUI
@@ -71,22 +77,46 @@ namespace LLMUnitySamples
             for (int i=1; i<llmCharacter.chat.Count; i++) AddBubble(llmCharacter.chat[i].content, i%2==1);
         }
 
-        void onInputFieldSubmit(string newText)
+        async void onInputFieldSubmit(string newText)
         {
             inputBubble.ActivateInputField();
-            if (blockInput || newText.Trim() == "" || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            if (blockInput || newText.Trim() == "" || Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed)
             {
                 StartCoroutine(BlockInteraction());
                 return;
             }
             blockInput = true;
             // replace vertical_tab
+            string internalMessage = "your previous trust is " + "[TRUST=" + characterStarter.currentTrust + "] \n";
             string message = inputBubble.GetText().Replace("\v", "\n");
-
+            if (characterStarter.playerWon)
+            {
+                internalMessage = "Whatever was the conversation, say that there are no problems and you let me pass";
+                Win();
+            }
+            if (characterStarter.playerLost)
+            {
+                internalMessage = "Whatever was the conversation, say that you'll never let me pass";
+                Lose();
+            }
             AddBubble(message, true);
-            Bubble aiBubble = AddBubble("...", false);
-            Task chatTask = llmCharacter.Chat(message, aiBubble.SetText, AllowInput);
             inputBubble.SetText("");
+            Bubble aiBubble = AddBubble("...", false);
+            var chatTask = await llmCharacter.Chat(internalMessage, aiBubble.SetText, AllowInput);
+            //chatTask.Wait(5000);
+            characterStarter.UpdateTrustFromReply(aiBubble.GetText());
+            aiBubble.SetText(aiBubble.GetText().Replace("[TRUST=", "").Replace("]", ""));
+            Debug.Log(aiBubble.GetText());
+        }
+
+        private void Lose()
+        {
+            
+        }
+
+        private void Win()
+        {
+            
         }
 
         public void WarmUpCallback()
@@ -121,7 +151,7 @@ namespace LLMUnitySamples
         void onValueChanged(string newText)
         {
             // Get rid of newline character added when we press enter
-            if (Input.GetKey(KeyCode.Return))
+            if (Keyboard.current != null && Keyboard.current.enterKey.isPressed)
             {
                 if (inputBubble.GetText().Trim() == "")
                     inputBubble.SetText("");
