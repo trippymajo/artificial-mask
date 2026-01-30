@@ -1,6 +1,6 @@
 public enum LevelId
 {
-    MysticClub = 0,
+    MysticCult = 0,
     NeonLights = 1,
-    SatanicClub = 2
+    TheTest = 2
 }

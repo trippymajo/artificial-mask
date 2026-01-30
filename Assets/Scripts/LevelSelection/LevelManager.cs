@@ -4,7 +4,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
-    public LevelId SelectedLevel { get; private set; } = LevelId.MysticClub;
+    public LevelId SelectedLevel { get; private set; } = LevelId.MysticCult;
 
     public int LastScore { get; private set; } = 0;
 
@@ -28,5 +28,10 @@ public class LevelManager : MonoBehaviour
     public void SetSelectedLevel(int levelId)
     {
         SelectedLevel = (LevelId)levelId;
+    }
+
+    public void SetScore(int score)
+    {
+        LastScore = score;
     }
 }
