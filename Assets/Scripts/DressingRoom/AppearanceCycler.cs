@@ -13,6 +13,15 @@ public class AppearanceCycler : MonoBehaviour
 
     private int index;
 
+    public ClothingItemDef CurrentItem
+    {
+        get
+        {
+            if (options == null || options.Length == 0) return null;
+            return options[index];
+        }
+    }
+
     private void Reset()
     {
         target = GetComponent<SpriteRenderer>();

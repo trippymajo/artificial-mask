@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126eb593c180ce3438090e10b8717022, type: 3}
   m_Name: ClothesNeon
   m_EditorClassIdentifier: Assembly-CSharp::ClothingItemDef
-  levelTag: 0
+  levelTag: 1
   sprite: {fileID: 1199516014, guid: df20e705aa8ddec40b26b2cd24192775, type: 3}
   givesPoints: 1

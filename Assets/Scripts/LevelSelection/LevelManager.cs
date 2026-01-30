@@ -6,6 +6,8 @@ public class LevelManager : MonoBehaviour
 
     public LevelId SelectedLevel { get; private set; } = LevelId.MysticClub;
 
+    public int LastScore { get; private set; } = 0;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
