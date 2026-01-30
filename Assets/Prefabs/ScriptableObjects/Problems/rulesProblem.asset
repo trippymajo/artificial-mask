@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac6150dd7859e42459918e33e3ae4819, type: 3}
-  m_Name: ClubController
+  m_Name: rulesProblem
   m_EditorClassIdentifier: Assembly-CSharp::StringLLMParam
-  paramDescription: 'You are a security in the club and interlocutor wants to get
-    in '
+  paramDescription: Your interlocutor has a problem with not knowing rules of your
+    club
