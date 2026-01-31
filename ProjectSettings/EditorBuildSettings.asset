@@ -14,6 +14,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DressingRoom.unity
     guid: d9d888d619307464fa7c45be8cdbc0f4
+  - enabled: 1
+    path: Assets/Scenes/Results_Neon.unity
+    guid: a42e92f2ade89fd42b42e8142eaa90da
+  - enabled: 1
+    path: Assets/Scenes/Results_Mystic.unity
+    guid: 3f498c3aa717e2d4c9023f0891a32521
+  - enabled: 1
+    path: Assets/Scenes/Results_Satanic.unity
+    guid: 1c74e7a81f951d246a6bf29078fd6423
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0

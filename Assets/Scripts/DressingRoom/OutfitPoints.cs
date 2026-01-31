@@ -13,6 +13,8 @@ public class OutfitPoints : MonoBehaviour
 
     [Header("Scoring")]
     [SerializeField] private int pointsPerMatch = 1;
+    [SerializeField] private DataBetweenScenes dataBetweenScenes;
+
 
     public void CalculateScoreAndLoadScene()
     {
@@ -28,6 +30,7 @@ public class OutfitPoints : MonoBehaviour
 
         // Lets do debug lol
         Debug.Log("Score: " + score);
+        dataBetweenScenes.score = score;
 
         if (LevelManager.Instance != null) LevelManager.Instance.SetScore(score);
 
