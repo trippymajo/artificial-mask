@@ -135,51 +135,54 @@ public class CharacterStarter : MonoBehaviour
             playerLost = true;
         }
 
-        foreach (var eye in eyes)
+        if (eyes.Count > 0 && eyes != null)
         {
-          eye.gameObject.SetActive(false);  
-        }
-
-        if (winCount > 0)
-        {
-            switch (winCount)
+            foreach (var eye in eyes)
             {
-                case 1:
-                    eyes[0].gameObject.SetActive(true);
-                    break;
-                case 2:
-                    eyes[0].gameObject.SetActive(true);
-                    break;
-                case 3:
-                    eyes[4].gameObject.SetActive(true);
-                    break;
-                case 4:
-                    eyes[4].gameObject.SetActive(true);
-                    break;
-                case 5:
-                    eyes[1].gameObject.SetActive(true);
-                    break;
+                eye.gameObject.SetActive(false);
             }
-        }
-        else
-        {
-            switch (loseCount)
+
+            if (winCount > 0)
             {
-                case 1:
-                    eyes[6].gameObject.SetActive(true);
-                    break;
-                case 2:
-                    eyes[5].gameObject.SetActive(true);
-                    break;
-                case 3:
-                    eyes[3].gameObject.SetActive(true);
-                    break;
-                case 4:
-                    eyes[3].gameObject.SetActive(true);
-                    break;
-                case 5:
-                    eyes[2].gameObject.SetActive(true);
-                    break;
+                switch (winCount)
+                {
+                    case 1:
+                        eyes[0].gameObject.SetActive(true);
+                        break;
+                    case 2:
+                        eyes[0].gameObject.SetActive(true);
+                        break;
+                    case 3:
+                        eyes[4].gameObject.SetActive(true);
+                        break;
+                    case 4:
+                        eyes[4].gameObject.SetActive(true);
+                        break;
+                    case 5:
+                        eyes[1].gameObject.SetActive(true);
+                        break;
+                }
+            }
+            else
+            {
+                switch (loseCount)
+                {
+                    case 1:
+                        eyes[6].gameObject.SetActive(true);
+                        break;
+                    case 2:
+                        eyes[5].gameObject.SetActive(true);
+                        break;
+                    case 3:
+                        eyes[3].gameObject.SetActive(true);
+                        break;
+                    case 4:
+                        eyes[3].gameObject.SetActive(true);
+                        break;
+                    case 5:
+                        eyes[2].gameObject.SetActive(true);
+                        break;
+                }
             }
         }
 

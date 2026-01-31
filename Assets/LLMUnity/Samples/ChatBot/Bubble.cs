@@ -90,7 +90,7 @@ namespace LLMUnitySamples
 
             bubbleImage.type = Image.Type.Sliced;
             bubbleImage.sprite = bubbleUI.sprite;
-            bubbleImage.color = bubbleUI.bubbleColor;
+            bubbleImage.color = new Color32(255, 255, 255, 0);;
             return imageObject;
         }
 
