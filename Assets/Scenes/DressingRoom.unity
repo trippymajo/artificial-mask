@@ -1291,7 +1291,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 30
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 685679690, guid: df20e705aa8ddec40b26b2cd24192775, type: 3}
+  m_Sprite: {fileID: 1891157826932761281, guid: ffeba3ddcc55dc34f9d6c40c7fc72eb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1317,7 +1317,11 @@ MonoBehaviour:
   options:
   - {fileID: 0}
   - {fileID: 11400000, guid: 250e32bac3ba0eb48b4116449805237a, type: 2}
+  - {fileID: 11400000, guid: 0db1452182f21894e9037cf2d123bae3, type: 2}
+  - {fileID: 11400000, guid: 1db6769b3b4e6154290b9b4ede78b384, type: 2}
+  - {fileID: 11400000, guid: 954159638d1e40f47a4a71eaddfbc330, type: 2}
   - {fileID: 11400000, guid: 42db7b75d40a4854283e84340455947f, type: 2}
+  - {fileID: 11400000, guid: 0f5715e923543c24cb0f96da11c060f7, type: 2}
   hideWhenNone: 1
 --- !u!1 &1557695568
 GameObject:
@@ -1436,7 +1440,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 40
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 1199516014, guid: df20e705aa8ddec40b26b2cd24192775, type: 3}
+  m_Sprite: {fileID: 5692504612229427047, guid: ffeba3ddcc55dc34f9d6c40c7fc72eb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1462,7 +1466,11 @@ MonoBehaviour:
   options:
   - {fileID: 0}
   - {fileID: 11400000, guid: 52ed9c34791a9224cbdb7385761b98fe, type: 2}
+  - {fileID: 11400000, guid: 86fb2e5276f17b04798b5a8bb93fc82f, type: 2}
+  - {fileID: 11400000, guid: d40421834eb2bb14cb5995057fb1b4f1, type: 2}
   - {fileID: 11400000, guid: 81d2211db5765f3499b24bbdaaae85c9, type: 2}
+  - {fileID: 11400000, guid: 24c5f2c54a6240b41a80bb321609235e, type: 2}
+  - {fileID: 11400000, guid: 61cf6551e73a88a43a4b1d3a7a038182, type: 2}
   hideWhenNone: 1
 --- !u!1 &1777708353
 GameObject:
@@ -1546,7 +1554,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 50
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1360573324243888677, guid: df20e705aa8ddec40b26b2cd24192775, type: 3}
+  m_Sprite: {fileID: 2548637566083905133, guid: ffeba3ddcc55dc34f9d6c40c7fc72eb5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1571,8 +1579,12 @@ MonoBehaviour:
   target: {fileID: 1777708355}
   options:
   - {fileID: 0}
-  - {fileID: 11400000, guid: 34015963b1f39134c97833399f197b97, type: 2}
+  - {fileID: 11400000, guid: f845925e669237d4f869950f8199f901, type: 2}
   - {fileID: 11400000, guid: 1716f8a39d5c98f45a5c20e559221338, type: 2}
+  - {fileID: 11400000, guid: 9f7d72115b32e194ba8ff74ab06d203c, type: 2}
+  - {fileID: 11400000, guid: 081fcefe20408c54c9bf5797f1b52428, type: 2}
+  - {fileID: 11400000, guid: 34015963b1f39134c97833399f197b97, type: 2}
+  - {fileID: 11400000, guid: 0fc5148e46731764ba6517b890ec7bb1, type: 2}
   hideWhenNone: 1
 --- !u!1 &1858741099
 GameObject:
