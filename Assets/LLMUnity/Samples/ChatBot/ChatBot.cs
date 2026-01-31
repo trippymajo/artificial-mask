@@ -32,6 +32,7 @@ namespace LLMUnitySamples
         private int lastBubbleOutsideFOV = -1;
         private Task chatTask;
         
+        
         public CharacterStarter characterStarter;
 
         public void Initialize()
@@ -58,6 +59,9 @@ namespace LLMUnitySamples
             inputBubble = new InputBubble(chatContainer, playerUI, "InputBubble", "Loading...", 4);
             var inputBubbleGM = GameObject.Find("InputBubble");
             inputBubbleGM.GetComponent<RectTransform>().sizeDelta = new Vector2(inputBubbleGM.GetComponent<RectTransform>().sizeDelta.x, 20);
+            inputBubbleGM.GetComponent<RectTransform>().position =  new Vector2(60, 20);
+            inputBubbleGM.GetComponentInChildren<Image>().sprite = null;
+            inputBubbleGM.GetComponentInChildren<Image>().color = new Color32(255, 255, 255, 0);
             //inputBubbleGM.GetComponent<RectTransform>().sizeDelta = new Vector2(inputBubbleGM.GetComponent<RectTransform>().sizeDelta.x, 800);
             inputBubble.AddSubmitListener(onInputFieldSubmit);
             inputBubble.AddValueChangedListener(onValueChanged);
@@ -109,6 +113,9 @@ namespace LLMUnitySamples
             //chatTask.Wait(5000);
             characterStarter.UpdateTrustFromReply(aiBubble.GetText());
             aiBubble.SetText(aiBubble.GetText()[..aiBubble.GetText().IndexOf('[')]);
+            aiBubble.bubbleUI.sprite = null;
+            aiBubble.bubbleUI.font = font;
+            aiBubble.bubbleUI.bubbleColor = new Color32(255, 255, 255, 0);
             Debug.Log(aiBubble.GetText());
         }
 
