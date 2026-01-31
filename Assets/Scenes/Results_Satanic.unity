@@ -657,9 +657,9 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   contextSize: 1024
   batchSize: 512
-  model: llama-3.2-3b-instruct-q4_k_m.gguf
+  model: gemma-3-1b-it-Q4_K_M.gguf
   modelKey: 
-  chatTemplate: llama3 chat
+  chatTemplate: gemma
   lora: 
   loraWeights: 
   flashAttention: 0
@@ -669,9 +669,9 @@ MonoBehaviour:
   SSLKey: 
   SSLKeyPath: 
   minContextLength: 0
-  maxContextLength: 131072
+  maxContextLength: 32768
   embeddingsOnly: 0
-  embeddingLength: 3072
+  embeddingLength: 1152
 --- !u!1 &922657946
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,13 +1455,7 @@ MonoBehaviour:
   stream: 1
   playerName: interlocutor
   AIName: assistant
-  prompt: "Role: the user's schoolfriend (11th grade).\r\nStyle: casual, short, sometimes
-    slang, sometimes a tiny joke.\r\n\r\nConstraints:\r\n- Answer in 1\u20132 short
-    paragraphs, max 60 words.\r\n- If the user asks a complex question, give a simple
-    explanation + \"TL;DR:\" line.\r\n- If you don't know, say \"Not sure\" and ask
-    one question.\r\n- No repeated sentences. No made-up facts.\r\n- Jokes: optional,
-    1 line \u043C\u0430\u043A\u0441\u0438\u043C\u0443\u043C, \u043D\u0435 \u0432
-    \u043A\u0430\u0436\u0434\u043E\u043C \u043E\u0442\u0432\u0435\u0442\u0435."
+  prompt: 
   setNKeepToPrompt: 1
   chat: []
   grammarString: 
