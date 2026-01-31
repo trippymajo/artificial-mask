@@ -26,6 +26,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Results_Satanic.unity
     guid: 1c74e7a81f951d246a6bf29078fd6423
+  - enabled: 1
+    path: Assets/Scenes/GoslingEnding.unity
+    guid: d9aef076d5abd704a9823ed0ec7d081a
+  - enabled: 1
+    path: Assets/Scenes/EndingLose.unity
+    guid: 2392a8f1912b8e34baa5f7186cf9ea0f
+  - enabled: 1
+    path: Assets/Scenes/NeonEnding.unity
+    guid: 846129acd16a9584c9b6099a6899a0ba
+  - enabled: 1
+    path: Assets/Scenes/SatanicEnding.unity
+    guid: 9039ae3e1e5b93a4ca22a06c2db62c1b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
   m_UseUCBPForAssetBundles: 0
