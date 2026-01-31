@@ -207,6 +207,7 @@ MonoBehaviour:
   playerWon: 0
   playerLost: 0
   currentTrust: 0
+  currentLevel: 0
   isAi: 0
   dataBetweenScenes: {fileID: 11400000, guid: bfd269ce7d68c364b9f885b4cd98e833, type: 2}
   eyes:
@@ -1898,7 +1899,7 @@ AudioSource:
   m_GameObject: {fileID: 1833883732}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -90716584450114232, guid: 7bcd3b6b0e4d16d4daa1d1ffd33da546, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: fcd8abe372943334e8dc18177957f1d9, type: 3}
   m_PlayOnAwake: 1
