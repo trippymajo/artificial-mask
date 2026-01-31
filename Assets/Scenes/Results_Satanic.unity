@@ -203,6 +203,7 @@ MonoBehaviour:
   playerWon: 0
   playerLost: 0
   currentTrust: 0
+  currentLevel: 1
   isAi: 1
   dataBetweenScenes: {fileID: 11400000, guid: bfd269ce7d68c364b9f885b4cd98e833, type: 2}
   eyes: []

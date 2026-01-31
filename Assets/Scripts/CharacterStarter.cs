@@ -7,6 +7,13 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Random = System.Random;
 
+
+public enum levelsEndings
+{
+    satan,
+    gosling,
+    club
+}
 public class CharacterStarter : MonoBehaviour
 {
     public StringLLMParam characterDescription;
@@ -28,6 +35,8 @@ public class CharacterStarter : MonoBehaviour
     public bool playerLost;
     
     public int currentTrust;
+    
+    public levelsEndings currentLevel;
 
     public bool isAi;
     [SerializeField] private DataBetweenScenes dataBetweenScenes;
@@ -124,14 +133,25 @@ public class CharacterStarter : MonoBehaviour
         if (winCount >= 5)
         {
             //победа
-            SceneManager.LoadScene("Select Level");
+            switch (currentLevel)
+            {
+                case levelsEndings.club:
+                    SceneManager.LoadScene("NeonEnding");
+                    break;
+                case levelsEndings.satan:
+                    SceneManager.LoadScene("SatanicEnding");
+                    break;
+                case levelsEndings.gosling:
+                    SceneManager.LoadScene("GoslingEnding");
+                    break;
+            }
             playerWon = true;
         }
 
         if (loseCount >= 5)
         {
             //поражение
-            SceneManager.LoadScene("Select Level");
+            SceneManager.LoadScene("EndingLose");
             playerLost = true;
         }
 
