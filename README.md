@@ -5,7 +5,7 @@
 Game Production / Programmer  
 Elia "Trippy Majo"
 
-Programmer 
+Programmer  
 Daniel "Kiko" Kikoliashvili 
 
 Sound  
