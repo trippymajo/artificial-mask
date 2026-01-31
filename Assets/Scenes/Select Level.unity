@@ -908,7 +908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7cec01ce0f8f4e45b258d37101c2822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelectButt
-  level: 0
+  level: 2
   gameSceneName: DressingRoom
 --- !u!1001 &2962960767829440937
 PrefabInstance:

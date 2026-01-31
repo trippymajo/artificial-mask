@@ -56,10 +56,13 @@ namespace LLMUnitySamples
             aiUI.leftPosition = 1;
 
             inputBubble = new InputBubble(chatContainer, playerUI, "InputBubble", "Loading...", 4);
+            var inputBubbleGM = GameObject.Find("InputBubble");
+            inputBubbleGM.GetComponent<RectTransform>().sizeDelta = new Vector2(inputBubbleGM.GetComponent<RectTransform>().sizeDelta.x, 20);
+            //inputBubbleGM.GetComponent<RectTransform>().sizeDelta = new Vector2(inputBubbleGM.GetComponent<RectTransform>().sizeDelta.x, 800);
             inputBubble.AddSubmitListener(onInputFieldSubmit);
             inputBubble.AddValueChangedListener(onValueChanged);
             inputBubble.setInteractable(false);
-            stopButton.gameObject.SetActive(true);
+            //stopButton.gameObject.SetActive(true);
             ShowLoadedMessages();
             _ = llmCharacter.Warmup(WarmUpCallback);
         }
@@ -99,13 +102,13 @@ namespace LLMUnitySamples
                 internalMessage = "Whatever was the conversation, say that you'll never let me pass";
                 Lose();
             }
-            AddBubble(message, true);
+            //AddBubble(message, true);
             inputBubble.SetText("");
             Bubble aiBubble = AddBubble("...", false);
             var chatTask = await llmCharacter.Chat(internalMessage, aiBubble.SetText, AllowInput);
             //chatTask.Wait(5000);
             characterStarter.UpdateTrustFromReply(aiBubble.GetText());
-            aiBubble.SetText(aiBubble.GetText().Replace("[TRUST=", "").Replace("]", ""));
+            aiBubble.SetText(aiBubble.GetText()[..aiBubble.GetText().IndexOf('[')]);
             Debug.Log(aiBubble.GetText());
         }
 

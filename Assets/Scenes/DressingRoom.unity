@@ -153,6 +153,7 @@ MonoBehaviour:
   clothes: {fileID: 1764758742}
   boots: {fileID: 1466286006}
   pointsPerMatch: 1
+  dataBetweenScenes: {fileID: 11400000, guid: bfd269ce7d68c364b9f885b4cd98e833, type: 2}
 --- !u!4 &71798754
 Transform:
   m_ObjectHideFlags: 0
